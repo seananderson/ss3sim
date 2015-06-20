@@ -577,11 +577,10 @@ ss3sim_base <- function(iterations, scenarios, f_params,
       }
 
       file.remove(pastef(sc, i, fake_dat))
-      if (!keep_compreport) {
-        file.remove(pastef(sc, i, "om", "CompReport.sso"))
-        file.remove(pastef(sc, i, "em", "CompReport.sso"))
-      }
-      #  Pause to reduce average CPUE use?
+      # ## Clean up some big files that aren't necessary
+      # file.remove(pastef(sc, i, "om", "CompReport.sso"))
+      # file.remove(pastef(sc, i, "em", "CompReport.sso"))
+      # Pause to reduce average CPUE use?
       Sys.sleep(sleep)
 
     } # end iterations
