@@ -43,7 +43,8 @@ value is set to \code{0.01} seconds, just to be safe.}
 \item{ss_mode}{Which version of the SS3 executable should be run?
 \code{"safe"} or \code{"optimized"}? Safe mode is useful for model building
 and testing. Optimized will be slightly faster for running simulations.
-Default is safe mode.}
+Default is safe mode. Other versions are allowed though no guarantee
+that the package will function.}
 
 \item{...}{Anything else to pass to \code{\link[base]{system}}.}
 }
