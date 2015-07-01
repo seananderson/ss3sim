@@ -47,7 +47,8 @@
 #' @param ss_mode Which version of the SS3 executable should be run?
 #'   \code{"safe"} or \code{"optimized"}? Safe mode is useful for model building
 #'   and testing. Optimized will be slightly faster for running simulations.
-#'   Default is safe mode.
+#'   Default is safe mode. Other versions are allowed though no guarantee
+#'   that the package will function.
 #' @param ... Anything else to pass to \code{\link[base]{system}}.
 #' @seealso \code{\link{ss3sim_base}}, \code{\link{run_ss3sim}}
 #' @author Sean C. Anderson
@@ -61,11 +62,6 @@ run_ss3model <- function(scenarios, iterations, type = c("om", "em"),
   admb_options <- sanitize_admb_options(admb_options, "-nohess")
   admb_options <- sanitize_admb_options(admb_options, "-noest")
   ss_mode <- ss_mode[1]
-  if(!ss_mode %in% c("safe", "optimized")) {
-    warning(paste("ss_mode must be one of safe or optimized.",
-        "Defaulting to safe mode"))
-    ss_mode <- "safe"
-  }
   if(ss_mode == "optimized") ss_mode <- "opt"
 
   os <- .Platform$OS.type
@@ -77,7 +73,7 @@ run_ss3model <- function(scenarios, iterations, type = c("om", "em"),
       ", was not found in your path. See the ss3sim vignette and ?run_ss3model",
       " for instructions."))
 
-  if(is.null(ss3path)) ss3path <- ""
+  if(is.null(ss3path)) ss3path <- dirname(bin)
 
   ss_em_options <- ifelse(hess, "", "-nohess")
 
